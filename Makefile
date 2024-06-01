@@ -8,7 +8,7 @@ PYTHON := $(VENV)/bin/python
 PIP := $(VENV)/bin/pip
 
 # Определение пакетов
-PACKAGES := flask telethon gunicorn
+PACKAGES := flask telethon gunicorn python-dotenv
 
 # Команды Makefile
 .PHONY: all install clean run
@@ -37,4 +37,3 @@ clean:
 
 # Запуск всего проекта
 run: install run-web run-bot
-

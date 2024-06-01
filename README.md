@@ -22,11 +22,14 @@ This repository contains a template for building Telegram bots using Telethon an
     cd TelegramBot
     ```
 
-2. Create a virtual environment and install the dependencies:
+2. Create a `.env` file in the root directory and add your API ID, API Hash, and Bot Token:
 
-    ```bash
-    make install
+    ```dotenv
+    API_ID=your_api_id
+    API_HASH=your_api_hash
+    BOT_TOKEN=your_bot_token
     ```
+
 
 ## Configuration
 
@@ -38,40 +41,17 @@ This repository contains a template for building Telegram bots using Telethon an
     api_id = 'YOUR_API_ID'
     api_hash = 'YOUR_API_HASH'
     bot_token = 'YOUR_BOT_TOKEN'
+    WEB_URL = 'http://127.0.0.1:8000/'
     ```
 
 ## Usage
-
-### Running the Web Application
-
-To run the web application using Gunicorn:
-
-```bash
-make run-web
-```
-
-### Running the Telegram Bot
-
-To run the Telegram bot:
-
-```bash
-make run-bot
-```
 
 ### Running Both Web Application and Bot
 
 To run both the web application and the Telegram bot:
 
 ```bash
-make run
-```
-
-### Cleaning Up
-
-To remove the virtual environment and temporary files:
-
-```bash
-make clean
+docker-compose up --build
 ```
 
 ## Template Usage
