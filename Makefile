@@ -1,11 +1,17 @@
 # Makefile
 
+VERSION := $(shell python -c "import uuid; print(uuid.uuid4())")
+
 # Имя виртуального окружения
 VENV := venv
 
 # Определение путей к Python и pip в виртуальном окружении
 PYTHON := $(VENV)/bin/python
 PIP := $(VENV)/bin/pip
+
+# Пути до папок проектов
+WEB_IMAGE := cr.yandex/crp8tu9klbd2oh20585s/template-web:$(VERSION)
+BOT_IMAGE := cr.yandex/crp8tu9klbd2oh20585s/template-bot:$(VERSION)
 
 # Определение пакетов
 PACKAGES := flask telethon gunicorn python-dotenv
@@ -34,6 +40,14 @@ clean:
 	rm -rf $(VENV)
 	find . -type f -name '*.pyc' -delete
 	find . -type d -name '__pycache__' -delete
+
+build-web:
+	docker build -t $(WEB_IMAGE) ./web
+	docker push $(WEB_IMAGE)
+
+build-bot:
+	docker build -t $(BOT_IMAGE) ./bot
+	docker push $(BOT_IMAGE)
 
 # Запуск всего проекта
 run: install run-web run-bot
