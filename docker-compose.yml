@@ -2,24 +2,21 @@ version: '3.8'
 
 services:
   web:
-    # build:
-    #   context: ./web
-    #   dockerfile: Dockerfile
-    image: cr.yandex/crp8tu9klbd2oh20585s/template-web:cca9b2aa-0eb3-4138-a302-e06bb46e04e9
+    build:
+      context: ./web
+      dockerfile: Dockerfile
     ports:
       - "8000:8000"
+    env_file:
+      - .env
     environment:
       - FLASK_APP=app.py
 
   bot:
-    # build:
-    #   context: ./bot
-    #   dockerfile: Dockerfile
-    image: cr.yandex/crp8tu9klbd2oh20585s/template-bot:67d8373a-f27b-4865-a22e-71c27265486f
-    environment:
-      - API_ID=${API_ID}
-      - API_HASH=${API_HASH}
-      - BOT_TOKEN=${BOT_TOKEN}
-      - WEB_URL=${WEB_URL}
+    build:
+      context: ./bot
+      dockerfile: Dockerfile
+    env_file:
+      - .env
     depends_on:
       - web

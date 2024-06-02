@@ -1,4 +1,4 @@
-from telethon import TelegramClient, events, Button
+from telethon import TelegramClient, events, Button, types
 from dotenv import load_dotenv
 import os
 import asyncio
@@ -21,7 +21,7 @@ async def start(event):
     
     # Отправка сообщения с кнопкой
     await event.respond('Welcome! Click the button below to open the web app.', buttons=[
-        [Button.url('Open Web App', web_app_url)]
+        [types.KeyboardButtonWebView('Open Web App', web_app_url)]
     ])
 
 # Запуск клиента в асинхронном режиме

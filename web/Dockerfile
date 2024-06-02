@@ -1,7 +1,7 @@
 # Dockerfile для веб-приложения
 
 # Использование базового образа с Python
-FROM python:3.9-slim
+FROM --platform=linux/amd64 python:3.9
 
 # Установка рабочей директории в контейнере
 WORKDIR /app
@@ -18,5 +18,8 @@ COPY . .
 # Копирование общих ресурсов
 # COPY ../core /app/core
 
+# Дефолтный порт, если не задан
+ENV PORT 8000
+
 # Команда по умолчанию для запуска приложения
-CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8000", "wsgi:app"]
+CMD exec gunicorn -w 4 -b 0.0.0.0:${PORT} wsgi:app
