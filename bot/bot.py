@@ -1,7 +1,10 @@
 from telethon import TelegramClient, events, Button, types
 from dotenv import load_dotenv
 import os
-import asyncio
+import logging
+
+# Настройка логирования
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s', handlers=[logging.StreamHandler()])
 
 # Загрузка переменных окружения из файла .env
 load_dotenv()
@@ -29,4 +32,5 @@ async def run_client():
     await client.run_until_disconnected()
 
 if __name__ == '__main__':
+    logging.info('Starting bot...')
     client.run_until_disconnected()

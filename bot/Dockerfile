@@ -1,7 +1,7 @@
 # Dockerfile для бота
 
 # Использование базового образа с Python
-FROM python:3.9-slim
+FROM --platform=linux/amd64 python:3.9
 
 # Установка рабочей директории в контейнере
 WORKDIR /app
@@ -19,4 +19,4 @@ COPY . .
 # COPY ../core /app/core
 
 # Команда по умолчанию для запуска бота
-CMD ["python", "bot.py"]
+CMD python bot.py

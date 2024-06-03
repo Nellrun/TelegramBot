@@ -22,4 +22,4 @@ COPY . .
 ENV PORT 8000
 
 # Команда по умолчанию для запуска приложения
-CMD exec gunicorn -w 4 -b 0.0.0.0:${PORT} wsgi:app
+CMD exec gunicorn -w 2 -b 0.0.0.0:${PORT} wsgi:app
